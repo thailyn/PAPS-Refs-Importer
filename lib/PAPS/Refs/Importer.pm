@@ -3,6 +3,7 @@ package PAPS::Refs::Importer;
 use 5.006;
 use strict;
 use warnings FATAL => 'all';
+use PAPS::Database::papsdb::Schema;
 
 =head1 NAME
 
