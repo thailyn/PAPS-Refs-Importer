@@ -17,7 +17,11 @@ Version 0.01
 
 our $VERSION = '0.01';
 
-# TODO: check if we have a file name as an argument. die if not
+# get the input file name as the first argument.
+# die if it is not provided or the file does not exist.
+my $input_file_name = shift @ARGV;
+die "$0: Must provide an input file name as an argument.\n" unless $input_file_name;
+die "$0: Input file '${input_file_name}' does not exist.\n" unless -e $input_file_name;
 
 my $schema = PAPS::Database::papsdb::Schema->connect('dbi:Pg:dbname=papsdb',
                                                      'papsuser', '');
