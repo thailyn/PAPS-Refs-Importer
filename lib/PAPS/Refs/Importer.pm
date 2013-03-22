@@ -17,6 +17,21 @@ Version 0.01
 
 our $VERSION = '0.01';
 
+my $schema = PAPS::Database::papsdb::Schema->connect('dbi:Pg:dbname=papsdb',
+                                                     'papsuser', '');
+
+# Get the user's id value.  Die if it cannot be found.
+my $user_name = 'RefImporter';
+my $user = $schema->resultset('User')->find( { 'me.name' => $user_name }, undef );
+die "$0: Error: User '${user_name}' not found.  Quitting.\n" unless $user;
+my $user_id = $user->id;
+
+# Get the algorithm's id value.  Die if it cannot be found.
+my $algorithm_name = 'References Importer';
+my $algorithm = $schema->resultset('Algorithm')->find( { 'me.name' => $algorithm_name }, undef );
+die "$0: Error: Id for algorithm '${algorithm_name}' not found.  Quitting.\n" unless $algorithm;
+my $algorithm_id = $algorithm->id;
+
 
 =head1 SYNOPSIS
 
