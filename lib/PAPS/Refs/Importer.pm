@@ -17,6 +17,8 @@ Version 0.01
 
 our $VERSION = '0.01';
 
+# TODO: check if we have a file name as an argument. die if not
+
 my $schema = PAPS::Database::papsdb::Schema->connect('dbi:Pg:dbname=papsdb',
                                                      'papsuser', '');
 
@@ -31,6 +33,26 @@ my $algorithm_name = 'References Importer';
 my $algorithm = $schema->resultset('Algorithm')->find( { 'me.name' => $algorithm_name }, undef );
 die "$0: Error: Id for algorithm '${algorithm_name}' not found.  Quitting.\n" unless $algorithm;
 my $algorithm_id = $algorithm->id;
+
+# TODO:
+# - open input file
+# - read in settings
+#   - lines with key/value pair
+#   - id of work to add references to
+#   - section from where ids are from (reference type)
+#   - (later) replace or update existing references
+#   - (later) option to remove newlines in reference text
+# - stop parsing settings at first blank line
+# - read in references
+#   - each reference  is separated by a blank line (to allow embedded newlines)
+# - insert each parsed reference into an array
+# - use DBIx to update or insert each reference parsed
+#   - assume references start at rank 1 and increment each time
+#   - (later) method to skip reference.  possibly by making input file tab-delimited.
+# - log messages to output with result of parsing and actions
+# - DB changes
+#   - have some way to store who is adding the references
+#     - like how referenced work guesses are recorded
 
 
 =head1 SYNOPSIS
