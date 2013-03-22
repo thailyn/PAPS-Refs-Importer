@@ -33,7 +33,7 @@ die "$0: Error: User '${user_name}' not found.  Quitting.\n" unless $user;
 my $user_id = $user->id;
 
 # Get the algorithm's id value.  Die if it cannot be found.
-my $algorithm_name = 'References Importer';
+my $algorithm_name = 'Simple Text Import';
 my $algorithm = $schema->resultset('Algorithm')->find( { 'me.name' => $algorithm_name }, undef );
 die "$0: Error: Id for algorithm '${algorithm_name}' not found.  Quitting.\n" unless $algorithm;
 my $algorithm_id = $algorithm->id;
