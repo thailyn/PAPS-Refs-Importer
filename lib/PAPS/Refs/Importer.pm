@@ -38,6 +38,50 @@ my $algorithm = $schema->resultset('Algorithm')->find( { 'me.name' => $algorithm
 die "$0: Error: Id for algorithm '${algorithm_name}' not found.  Quitting.\n" unless $algorithm;
 my $algorithm_id = $algorithm->id;
 
+my $fh;
+my $mode = "settings";
+my $work_id;
+my $references_chapter;
+my $references_location;
+open($fh, "<", $input_file_name) or die "$0: Cannot open input file '${input_file_name}' for reading: $!\n";
+while (my $line = <$fh>) {
+  chomp $line;
+  print "line: '$line'.\n";
+  if ($mode eq "settings") {
+    if ($line =~ /^\s*$/) {
+      $mode = "input";
+      next;
+    }
+
+    #my ($key, $value) = split(/=/, $line);
+    my ($key, $value) = $line =~ /^\s*(.*?)\s*=\s*(.*?)\s*$/;
+
+    unless ($value) {
+      print "Settings line is not properly formatted: $line\n";
+      next;
+    }
+
+    print "Parsed values: key: '$key', value: '$value'\n";
+
+    if ($key eq "work") {
+      $work_id = $value;
+    }
+    elsif ($key eq "chapter") {
+      $references_chapter = $value;
+    }
+    elsif ($key eq "location") {
+      $references_location = $value;
+    }
+  }
+  elsif ($mode eq "input") {
+    print "found input '$line'\n";
+  }
+  else {
+    print "In unknown mode '${mode}'.\n";
+    last;
+  }
+}
+
 # TODO:
 # - open input file
 # - read in settings
