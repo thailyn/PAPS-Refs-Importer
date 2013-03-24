@@ -62,12 +62,15 @@ while (my $line = <$fh>) {
 
     if ($key eq "work") {
       $work_id = $value;
+      print "Using work id '${work_id}'.\n";
     }
     elsif ($key eq "chapter") {
       $references_chapter = $value;
+      print "Using reference chapter '${references_chapter}'.\n";
     }
     elsif ($key eq "location") {
       $references_location = $value;
+      print "Using reference location '${references_location}'.\n";
     }
   }
   elsif ($mode eq "input") {
