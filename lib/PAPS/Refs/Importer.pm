@@ -72,6 +72,9 @@ while (my $line = <$fh>) {
       $references_location = $value;
       print "Using reference location '${references_location}'.\n";
     }
+    else {
+      print "Found unexpected key '${key}' with value '${value}'.\n";
+    }
   }
   elsif ($mode eq "input") {
     print "found input '$line'\n";
