@@ -85,14 +85,14 @@ while (my $line = <$fh>) {
 }
 
 # TODO:
-# - open input file
+# - open input file (done)
 # - read in settings
-#   - lines with key/value pair
-#   - id of work to add references to
-#   - section from where ids are from (reference type)
+#   - lines with key/value pair (done)
+#   - id of work to add references to (done)
+#   - section from where ids are from (reference type) (done)
 #   - (later) replace or update existing references
 #   - (later) option to remove newlines in reference text
-# - stop parsing settings at first blank line
+# - stop parsing settings at first blank line (done)
 # - read in references
 #   - each reference  is separated by a blank line (to allow embedded newlines)
 # - insert each parsed reference into an array
