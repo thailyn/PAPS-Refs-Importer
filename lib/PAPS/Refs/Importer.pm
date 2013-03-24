@@ -52,7 +52,6 @@ while (my $line = <$fh>) {
       next;
     }
 
-    #my ($key, $value) = split(/=/, $line);
     my ($key, $value) = $line =~ /^\s*(.*?)\s*=\s*(.*?)\s*$/;
 
     unless ($value) {
