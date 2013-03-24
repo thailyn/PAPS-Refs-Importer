@@ -46,7 +46,6 @@ my $references_location;
 open($fh, "<", $input_file_name) or die "$0: Cannot open input file '${input_file_name}' for reading: $!\n";
 while (my $line = <$fh>) {
   chomp $line;
-  print "line: '$line'.\n";
   if ($mode eq "settings") {
     if ($line =~ /^\s*$/) {
       $mode = "input";
@@ -60,8 +59,6 @@ while (my $line = <$fh>) {
       print "Settings line is not properly formatted: $line\n";
       next;
     }
-
-    print "Parsed values: key: '$key', value: '$value'\n";
 
     if ($key eq "work") {
       $work_id = $value;
