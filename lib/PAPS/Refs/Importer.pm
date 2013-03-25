@@ -38,6 +38,9 @@ my $algorithm = $schema->resultset('Algorithm')->find( { 'me.name' => $algorithm
 die "$0: Error: Id for algorithm '${algorithm_name}' not found.  Quitting.\n" unless $algorithm;
 my $algorithm_id = $algorithm->id;
 
+my $refs = [ ];
+my $current_ref = "";
+
 my $fh;
 my $mode = "settings";
 my $work_id;
@@ -46,6 +49,7 @@ my $references_location;
 open($fh, "<", $input_file_name) or die "$0: Cannot open input file '${input_file_name}' for reading: $!\n";
 while (my $line = <$fh>) {
   chomp $line;
+
   if ($mode eq "settings") {
     if ($line =~ /^\s*$/) {
       $mode = "input";
@@ -76,7 +80,17 @@ while (my $line = <$fh>) {
     }
   }
   elsif ($mode eq "input") {
-    print "found input '$line'\n";
+    #print "found input '$line'\n";
+
+    if ($line =~ /^\s*$/) {
+      # end of current refernce
+      #print "Adding reference '${current_ref}' to references list.\n";
+      push $refs, $current_ref;
+      $current_ref = "";
+    }
+    else {
+      $current_ref = $current_ref . $line;
+    }
   }
   else {
     print "In unknown mode '${mode}'.\n";
