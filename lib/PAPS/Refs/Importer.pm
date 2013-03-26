@@ -133,7 +133,7 @@ for (my $i = 0; $i < @{$refs}; $i++) {
                     }
                    );
   if ($result->in_storage) {
-    print "Updated referenced ${i}.\n";
+    print "Reference ${i} already existed.\n";
   }
   else {
     $result->insert;
