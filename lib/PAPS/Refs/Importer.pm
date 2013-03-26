@@ -108,6 +108,7 @@ while (my $line = <$fh>) {
   }
 }
 
+die "$0: Missing required setting 'work' for id of work.\n" unless $work_id;
 die "$0: Missing required setting 'location' for location of references.\n" unless $references_location;
 
 # Get the reference type/location's id value.  Die if it cannot be found.
