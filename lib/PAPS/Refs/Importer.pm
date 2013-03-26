@@ -108,6 +108,8 @@ while (my $line = <$fh>) {
   }
 }
 
+die "$0: Missing required setting 'location' for location of references.\n" unless $references_location;
+
 # Get the reference type/location's id value.  Die if it cannot be found.
 my $reference_type = $schema->resultset('ReferenceType')->find( { 'me.name' => $references_location }, undef );
 die "$0: Error: Reference type '${references_location}' not found.  Quitting.\n" unless $reference_type;
