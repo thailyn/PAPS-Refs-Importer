@@ -108,6 +108,11 @@ while (my $line = <$fh>) {
   }
 }
 
+# Get the reference type/location's id value.  Die if it cannot be found.
+my $reference_type = $schema->resultset('ReferenceType')->find( { 'me.name' => $references_location }, undef );
+die "$0: Error: Reference type '${references_location}' not found.  Quitting.\n" unless $reference_type;
+my $reference_type_id = $reference_type->id;
+
 # TODO:
 # - open input file (done)
 # - read in settings
