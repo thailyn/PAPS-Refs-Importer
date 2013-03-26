@@ -95,7 +95,7 @@ while (my $line = <$fh>) {
     if ($line =~ /^\s*$/) {
       # end of current refernce
       #print "Adding reference '${current_ref}' to references list.\n";
-      push $refs, $current_ref;
+      push $refs, $current_ref unless $current_ref =~ /^\s*$/;
       $current_ref = "";
     }
     else {
