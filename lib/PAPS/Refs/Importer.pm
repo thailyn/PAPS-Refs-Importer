@@ -117,9 +117,9 @@ while (my $line = <$fh>) {
 #   - (later) replace or update existing references
 #   - (later) option to remove newlines in reference text
 # - stop parsing settings at first blank line (done)
-# - read in references
-#   - each reference  is separated by a blank line (to allow embedded newlines)
-# - insert each parsed reference into an array
+# - read in references (done)
+#   - each reference  is separated by a blank line (to allow embedded newlines) (done)
+# - insert each parsed reference into an array (done)
 # - use DBIx to update or insert each reference parsed
 #   - assume references start at rank 1 and increment each time
 #   - (later) method to skip reference.  possibly by making input file tab-delimited.
