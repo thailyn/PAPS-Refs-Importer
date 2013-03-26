@@ -3,6 +3,8 @@ package PAPS::Refs::Importer;
 use 5.006;
 use strict;
 use warnings FATAL => 'all';
+use DateTime;
+use DateTime::Format::Pg;
 use PAPS::Database::papsdb::Schema;
 
 =head1 NAME
@@ -116,6 +118,10 @@ my $reference_type = $schema->resultset('ReferenceType')->find( { 'me.name' => $
 die "$0: Error: Reference type '${references_location}' not found.  Quitting.\n" unless $reference_type;
 my $reference_type_id = $reference_type->id;
 
+my $current_date_time = DateTime->now();
+$current_date_time->set_time_zone('America/New_York'); # This should be configurable, though, of course.
+my $pg_timestamp = DateTime::Format::Pg->format_timestamp_with_time_zone($current_date_time);
+
 for (my $i = 0; $i < @{$refs}; $i++) {
 #foreach my $ref (@{$refs}) {
   my $ref = $refs->[$i];
@@ -130,6 +136,7 @@ for (my $i = 0; $i < @{$refs}; $i++) {
                      referenced_work_id => undef,
                      reference_text => $ref,
                      persona_id => $persona_id,
+                     #modified => $pg_timestamp,
                     }
                    );
   if ($result->in_storage) {
