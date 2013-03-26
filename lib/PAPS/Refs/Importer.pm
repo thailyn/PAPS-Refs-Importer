@@ -116,6 +116,31 @@ my $reference_type = $schema->resultset('ReferenceType')->find( { 'me.name' => $
 die "$0: Error: Reference type '${references_location}' not found.  Quitting.\n" unless $reference_type;
 my $reference_type_id = $reference_type->id;
 
+for (my $i = 0; $i < @{$refs}; $i++) {
+#foreach my $ref (@{$refs}) {
+  my $ref = $refs->[$i];
+  print "ref: '${ref}'\n";
+  my $result = $schema->resultset('WorkReference')
+    ->update_or_new(
+                    {
+                     rank => ($i + 1),
+                     chapter => $references_chapter || undef,
+                     reference_type_id => $reference_type_id || undef,
+                     referencing_work_id => $work_id,
+                     referenced_work_id => undef,
+                     reference_text => $ref,
+                     persona_id => $persona_id,
+                    }
+                   );
+  if ($result->in_storage) {
+    print "Updated referenced ${i}.\n";
+  }
+  else {
+    $result->insert;
+    print "Created reference ${i}.\n";
+  }
+}
+
 # TODO:
 # - open input file (done)
 # - read in settings
