@@ -137,7 +137,7 @@ for (my $i = 0; $i < @{$refs}; $i++) {
                      referenced_work_id => undef,
                      reference_text => $ref,
                      persona_id => $persona_id,
-                     #modified => $pg_timestamp,
+                     modified => $pg_timestamp,
                     },
                     {
                      key => 'unique__work_references__referencing_type_chapter_rank'
