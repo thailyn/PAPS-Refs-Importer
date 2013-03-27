@@ -138,6 +138,9 @@ for (my $i = 0; $i < @{$refs}; $i++) {
                      reference_text => $ref,
                      persona_id => $persona_id,
                      #modified => $pg_timestamp,
+                    },
+                    {
+                     key => 'unique__work_references__referencing_type_chapter_rank'
                     }
                    );
   if ($result->in_storage) {
