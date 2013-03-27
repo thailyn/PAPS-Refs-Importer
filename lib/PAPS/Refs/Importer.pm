@@ -92,11 +92,8 @@ while (my $line = <$fh>) {
     }
   }
   elsif ($mode eq "input") {
-    #print "found input '$line'\n";
-
     if ($line =~ /^\s*$/) {
       # end of current refernce
-      #print "Adding reference '${current_ref}' to references list.\n";
       push $refs, $current_ref unless $current_ref =~ /^\s*$/;
       $current_ref = "";
     }
@@ -124,9 +121,7 @@ $current_date_time->set_time_zone('America/New_York'); # This should be configur
 my $pg_timestamp = DateTime::Format::Pg->format_timestamp_with_time_zone($current_date_time);
 
 for (my $i = 0; $i < @{$refs}; $i++) {
-#foreach my $ref (@{$refs}) {
   my $ref = $refs->[$i];
-  print "ref: '${ref}'\n";
   my $result = $schema->resultset('WorkReference')
     ->update_or_new(
                     {
