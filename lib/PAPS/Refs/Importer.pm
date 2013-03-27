@@ -112,6 +112,7 @@ while (my $line = <$fh>) {
 
 die "$0: Missing required setting 'work' for id of work.\n" unless $work_id;
 die "$0: Missing required setting 'location' for location of references.\n" unless $references_location;
+die "$0: Missing required setting 'chapter' for chapter containing references.\n" unless $references_chapter;
 
 # Get the reference type/location's id value.  Die if it cannot be found.
 my $reference_type = $schema->resultset('ReferenceType')->find( { 'me.name' => $references_location }, undef );
