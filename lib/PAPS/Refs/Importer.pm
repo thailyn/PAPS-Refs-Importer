@@ -148,24 +148,11 @@ for (my $i = 0; $i < @{$refs}; $i++) {
 }
 
 # TODO:
-# - open input file (done)
 # - read in settings
-#   - lines with key/value pair (done)
-#   - id of work to add references to (done)
-#   - section from where ids are from (reference type) (done)
 #   - (later) replace or update existing references
 #   - (later) option to remove newlines in reference text
-# - stop parsing settings at first blank line (done)
-# - read in references (done)
-#   - each reference  is separated by a blank line (to allow embedded newlines) (done)
-# - insert each parsed reference into an array (done)
 # - use DBIx to update or insert each reference parsed
-#   - assume references start at rank 1 and increment each time (done)
 #   - (later) method to skip reference.  possibly by making input file tab-delimited.
-# - log messages to output with result of parsing and actions (done)
-# - DB changes (done)
-#   - have some way to store who is adding the references (done)
-#     - like how referenced work guesses are recorded (done)
 
 
 =head1 SYNOPSIS
