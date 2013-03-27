@@ -160,12 +160,12 @@ for (my $i = 0; $i < @{$refs}; $i++) {
 #   - each reference  is separated by a blank line (to allow embedded newlines) (done)
 # - insert each parsed reference into an array (done)
 # - use DBIx to update or insert each reference parsed
-#   - assume references start at rank 1 and increment each time
+#   - assume references start at rank 1 and increment each time (done)
 #   - (later) method to skip reference.  possibly by making input file tab-delimited.
-# - log messages to output with result of parsing and actions
-# - DB changes
-#   - have some way to store who is adding the references
-#     - like how referenced work guesses are recorded
+# - log messages to output with result of parsing and actions (done)
+# - DB changes (done)
+#   - have some way to store who is adding the references (done)
+#     - like how referenced work guesses are recorded (done)
 
 
 =head1 SYNOPSIS
