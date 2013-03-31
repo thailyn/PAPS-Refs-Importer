@@ -17,7 +17,7 @@ Version 0.01
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.001';
 
 # get the input file name as the first argument.
 # die if it is not provided or the file does not exist.
