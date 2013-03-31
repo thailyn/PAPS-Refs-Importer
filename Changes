@@ -1,5 +1,11 @@
 Revision history for PAPS-Refs-Importer
 
-0.01    Date/time
-        First version, released on an unsuspecting world.
+0.001  Sun Mar 31 14:37:04 2013 -0400
+  New features:
+    - Initial version.  Reads in an 'input' file, collects some work metadata
+      (dieing with an error message if required information is not found), and
+      adds references found in the file to the indicated work.  The person for
+      this user, algorithm, and version are used to attribute the changes
+      correctly.
+
 
